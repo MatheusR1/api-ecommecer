@@ -13,8 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('cidades', function (Blueprint $table) {
+        Schema::create('produtos', function (Blueprint $table) {
             $table->id();
+            $table->string('nome',255);
+            $table->decimal('preco')->nullable();
+            $table->foreignId('id_grupo_cidade')->references('id')->on('grupo_cidades');
             $table->timestamps();
         });
     }
@@ -26,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cidades');
+        Schema::dropIfExists('produtos');
     }
 };
